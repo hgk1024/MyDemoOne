@@ -12,6 +12,7 @@ import com.zhouyou.http.model.HttpHeaders;
 import com.zhouyou.http.model.HttpParams;
 
 import socilgirl.dell.mydemo.constant.AppContant;
+import socilgirl.dell.mydemo.imagemanger.ImageManager;
 import socilgirl.dell.mydemo.utils.SystemInfoUtils;
 
 /**
@@ -25,6 +26,7 @@ public class MyApplication extends Application {
         super.onCreate();
         app = this;
         initRxEasyHttp();
+        ImageManager.getInstance().init(this);//初始化图片加载框架
     }
 
     private void initRxEasyHttp() {

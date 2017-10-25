@@ -35,12 +35,15 @@ public class ImageManager implements IimageManagerIm {
 
     @Override
     public void showImage(@NonNull ImageLoaderOptions options) {
+
         if (mIimageManagerIm != null) {
             try {
                 mIimageManagerIm.showImage(options);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }else{
+            throw new NullPointerException("沒有初始化");
         }
     }
 
@@ -53,7 +56,7 @@ public class ImageManager implements IimageManagerIm {
     // 在application的oncreate中初始化
     @Override
     public void init(Context context) {
-        mIimageManagerIm = new GlideImageLoader();
+        mIimageManagerIm = new GlideImageLoader();//可以改为其他图片加载工具
         mIimageManagerIm.init(context);
     }
 

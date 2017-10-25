@@ -126,6 +126,8 @@ public class GlideImageLoader implements IimageManagerIm {
             load.transforms(new RoundedCorners(options.getRoundeds()));
         }else if(Circle){
             load.transforms(new CircleCrop());
+        }else{
+            load.centerCrop();
         }
 
 
@@ -161,6 +163,9 @@ public class GlideImageLoader implements IimageManagerIm {
         return mGlideUrl;
     }
 
+    /**
+    * q清除缓存的图片
+    * */
     @Override
     public void cleanMemory(Context context) {
         if (Looper.myLooper() == Looper.getMainLooper()) {
@@ -188,6 +193,4 @@ public class GlideImageLoader implements IimageManagerIm {
         mContext = context;
         mImageCookieUtils = imageCookieUtils;
     }
-
-
 }
