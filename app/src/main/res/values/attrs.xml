@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StateLayout">
+        <!-- error tip image -->
+        <attr name="errorImg" format="reference" />
+        <!-- error tip text -->
+        <attr name="errorText" format="string" />
+        <!-- empty tip image -->
+        <attr name="emptyImg" format="reference" />
+        <!-- empty tip text -->
+        <attr name="emptyText" format="string" />
+        <!-- no network tip image -->
+        <attr name="noNetworkImg" format="reference" />
+        <!-- no network tip text -->
+        <attr name="noNetworkText" format="string" />
+        <!-- timeout tip image -->
+        <attr name="timeOutImg" format="reference" />
+        <!-- timeout tip text -->
+        <attr name="timeOutText" format="string" />
+        <!-- sign in tip image -->
+        <attr name="loginImg" format="reference" />
+        <!-- sign in tip text -->
+        <attr name="loginText" format="string" />
+        <!-- loading tip text -->
+        <attr name="loadingText" format="string" />
+    </declare-styleable>
+</resources>

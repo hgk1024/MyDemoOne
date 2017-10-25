@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:layout_height="60dp">
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="10dp"
+        android:src="@mipmap/ic_delete_red"/>
+    <TextView
+        android:id="@+id/tv_item_mainrecycle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/empty_tip"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="15dp"/>
+</LinearLayout>
