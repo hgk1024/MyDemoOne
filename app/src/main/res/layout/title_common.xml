@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/title_height"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/rl_common_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_common_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/x18"
+            android:gravity="center"
+            android:text="TITLE"/>
+        <FrameLayout
+            android:id="@+id/fl_common_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_common_left"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/title_height"
+        android:paddingStart="@dimen/x15"
+        android:background="@drawable/selector_back">
+
+        <ImageView
+            android:id="@+id/iv_common_left"
+            android:layout_width="@dimen/x25"
+            android:layout_height="@dimen/x25"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/fanhui" />
+        <TextView
+            android:id="@+id/tv_common_left"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/title_height"
+            android:text="左侧按钮"
+            android:gravity="center_vertical"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_common_right"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/title_height"
+        android:layout_gravity="end"
+        android:paddingEnd="@dimen/x15"
+        android:background="@drawable/selector_back">
+
+        <ImageView
+            android:id="@+id/iv_common_right"
+            android:layout_width="@dimen/x20"
+            android:layout_height="@dimen/title_height"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/more" />
+        <TextView
+            android:id="@+id/tv_common_right"
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_height="@dimen/title_height"
+            android:text="这里是一个右侧"/>
+    </RelativeLayout>
+</FrameLayout>

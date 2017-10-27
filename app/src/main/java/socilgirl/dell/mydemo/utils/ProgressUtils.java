@@ -14,6 +14,7 @@ import socilgirl.dell.mydemo.R;
  */
 
 public class ProgressUtils {
+
     public ProgressUtils() {
     }
     public void showDialog(Context context,String msg1,String msg2){

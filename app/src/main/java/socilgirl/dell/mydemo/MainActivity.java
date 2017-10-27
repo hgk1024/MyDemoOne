@@ -1,6 +1,8 @@
 package socilgirl.dell.mydemo;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -11,11 +13,13 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fingdo.statelayout.StateLayout;
 
@@ -25,28 +29,80 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import socilgirl.dell.mydemo.adapter.MyRecyclerViewAdapter;
+import socilgirl.dell.mydemo.adapter.SecondViewAdapter;
+import socilgirl.dell.mydemo.common.viewweight.CommonTopBar;
+import socilgirl.dell.mydemo.httpmanager.callback.BaseCallback;
+import socilgirl.dell.mydemo.httpmanager.imhttpinterface.GetParameters;
+import socilgirl.dell.mydemo.httpmanager.imhttpinterface.HttpManager;
+import socilgirl.dell.mydemo.model.UserInfo;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private Button btnClick;
     private StateLayout stateLayout;
     private RecyclerView recyclerView;
     private List<String> mList;
+    CommonTopBar topBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initData();
+        topBar = findViewById(R.id.com_main_view);
+        topBar.setTitle(false,"主页面",null);
+        topBar.setRlLeft(true,null,R.mipmap.fanhui);
+        topBar.setRlRight(false,"跳转",0);
+        topBar.setOnLeftClickListener(new CommonTopBar.OnLeftClickListener() {
+            @Override
+            public void onClickLeft() {
+                Toast.makeText(MainActivity.this, "左侧按钮被点击了", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onClickRight() {
+                startActivity(new Intent(MainActivity.this, Main2Activity.class));
+            }
+
+            @Override
+            public void onClickTitle() {
+                topBar.setTitle(false,"点击显示",null);
+                Toast.makeText(MainActivity.this, "标题栏被点击了", Toast.LENGTH_SHORT).show();
+            }
+        });
         btnClick = (Button) findViewById(R.id.btn_one);
         stateLayout = (StateLayout) findViewById(R.id.statelayout);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         btnClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stateLayout.showEmptyView();
-                DownloadThread thread = new DownloadThread();
-                thread.start();
+//                stateLayout.showEmptyView();
+//                DownloadThread thread = new DownloadThread();
+//                thread.start();
+                GetParameters parameters = new GetParameters.Builder()
+                        .setUrl("user/get_user_info.json")
+                        .setParameter("userid","1048")
+                        .build();
+
+                HttpManager.getInstance().get(parameters, new BaseCallback<UserInfo>() {
+                    @Override
+                    public void onStart() {
+                        Log.d("MainActivity", "TAG--start");
+                        Toast.makeText(MainActivity.this, "start==开始", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onSuccess(UserInfo s) {
+                        Toast.makeText(MainActivity.this, "获取数据成功", Toast.LENGTH_SHORT).show();
+                        Log.d("MainActivity:====", s.toString());
+                    }
+
+                    @Override
+                    public void onError(int code, String msg, Exception e) {
+                        Log.d("MainActivity", msg+"-----"+e.getMessage());
+                        Toast.makeText(MainActivity.this, "获取数据失败", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);

@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="socilgirl.dell.mydemo.MainActivity">
+    <socilgirl.dell.mydemo.common.viewweight.CommonTopBar
+        android:id="@+id/com_main_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:textLeft="你好"/>
 
     <TextView
         android:layout_width="wrap_content"

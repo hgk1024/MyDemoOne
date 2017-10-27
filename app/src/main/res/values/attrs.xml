@@ -24,4 +24,12 @@
         <!-- loading tip text -->
         <attr name="loadingText" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="CommonTopBar">
+        <attr name="textLeft" format="string"/>
+        <attr name="textright" format="string"/>
+        <attr name="imgLeft" format="integer"/>
+        <attr name="imaRight" format="integer"/>
+        <attr name="textTitle" format="string"/>
+    </declare-styleable>
 </resources>

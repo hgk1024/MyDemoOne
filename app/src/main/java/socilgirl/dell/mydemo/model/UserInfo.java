@@ -196,5 +196,35 @@ public class UserInfo {
         public void setTags(List<?> tags) {
             this.tags = tags;
         }
+
+        @Override
+        public String toString() {
+            return "DataBean{" +
+                    "introduce='" + introduce + '\'' +
+                    ", nickname='" + nickname + '\'' +
+                    ", headpic='" + headpic + '\'' +
+                    ", backpic='" + backpic + '\'' +
+                    ", sex='" + sex + '\'' +
+                    ", city='" + city + '\'' +
+                    ", birthday='" + birthday + '\'' +
+                    ", star=" + star +
+                    ", role=" + role +
+                    ", follow_num=" + follow_num +
+                    ", fan_num=" + fan_num +
+                    ", favorite_num=" + favorite_num +
+                    ", publish_num=" + publish_num +
+                    ", order_num=" + order_num +
+                    ", tags=" + tags +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "code='" + code + '\'' +
+                ", msg='" + msg + '\'' +
+                ", data=" + data.toString()+
+                '}';
     }
 }
