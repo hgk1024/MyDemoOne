@@ -2,19 +2,14 @@ package socilgirl.dell.mydemo;
 
 import android.app.Application;
 import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.zhouyou.http.EasyHttp;
-import com.zhouyou.http.cache.converter.SerializableDiskConverter;
-import com.zhouyou.http.cache.model.CacheMode;
-import com.zhouyou.http.model.HttpHeaders;
-import com.zhouyou.http.model.HttpParams;
 
-import socilgirl.dell.mydemo.constant.AppContant;
-import socilgirl.dell.mydemo.httpmanager.imhttpinterface.HttpManager;
+import socilgirl.dell.mydemo.greendao.GreenDaoManager;
+import socilgirl.dell.mydemo.greendao.gen.DaoMaster;
+import socilgirl.dell.mydemo.greendao.gen.DaoSession;
 import socilgirl.dell.mydemo.imagemanger.ImageManager;
-import socilgirl.dell.mydemo.utils.SystemInfoUtils;
 
 /**
  * Created by dell on 2017/10/25.
@@ -22,6 +17,8 @@ import socilgirl.dell.mydemo.utils.SystemInfoUtils;
 
 public class MyApplication extends Application {
     private static Application app = null;
+
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -30,8 +27,10 @@ public class MyApplication extends Application {
         ImageManager.getInstance().init(this);//初始化图片加载框架
         EasyHttp.init(this);
         EasyHttp.getInstance().setBaseUrl("https://api.zaiwaner.cn/1.0.1/").debug("网络访问：",true);
-
+        GreenDaoManager.getInstance();//Greendao初始化
     }
+
+
 
 //    private void initRxEasyHttp() {
 //        EasyHttp.init(this);

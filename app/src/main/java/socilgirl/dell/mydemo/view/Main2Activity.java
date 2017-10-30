@@ -1,4 +1,4 @@
-package socilgirl.dell.mydemo;
+package socilgirl.dell.mydemo.view;
 
 import android.app.Activity;
 import android.content.Context;
@@ -33,6 +33,7 @@ import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import socilgirl.dell.mydemo.R;
 import socilgirl.dell.mydemo.adapter.MyItemClickListener;
 import socilgirl.dell.mydemo.adapter.SecondViewAdapter;
 import socilgirl.dell.mydemo.imagemanger.ImageLoaderOptions;

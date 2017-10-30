@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="socilgirl.dell.mydemo.view.RecycleTest">
+    <LinearLayout
+        android:id="@+id/llt_recycleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_recycle_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="简化ad"/>
+        <Button
+            android:id="@+id/btn_recycle_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="集成t"/>
+        <Button
+            android:id="@+id/btn_recycle_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="多t"/>
+        <Button
+            android:id="@+id/btn_recycle_four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fh添加"/>
+    </LinearLayout>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_layouview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_below="@+id/llt_recycleView">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</RelativeLayout>
