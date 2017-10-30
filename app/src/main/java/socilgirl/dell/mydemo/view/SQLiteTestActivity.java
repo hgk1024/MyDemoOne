@@ -33,7 +33,7 @@ public class SQLiteTestActivity extends AppCompatActivity {
     EditText etUserphone;
     @BindView(R.id.et_uspassworld)
     EditText etUspassworld;
-    @BindView(R.id.btn_add)
+//    @BindView(R.id.btn_add)
     Button btnAdd;
     @BindView(R.id.btn_delete)
     Button btnDelete;
@@ -58,17 +58,52 @@ public class SQLiteTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sqlite_test);
         ButterKnife.bind(this);
+        btnAdd = findViewById(R.id.btn_add);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userid = etUserid.getText().toString();
+                userName = etUsername.getText().toString();
+                userPhone = etUserphone.getText().toString();
+                passWord = etUspassworld.getText().toString();
+                if (isNotEmpty(userid) &&isNotEmpty(passWord)){
+                    QueryBuilder qb = userDao.queryBuilder();
+                    ArrayList<UserInfoTwo> list = (ArrayList<UserInfoTwo>) qb.where(UserInfoTwoDao.Properties.Userid.eq(userid)).list();
+                    if (list.size()>0){
+                        Toast.makeText(SQLiteTestActivity.this, "组建重复", Toast.LENGTH_SHORT).show();
+                    }else{
+                        userDao.insert(new UserInfoTwo(Long.valueOf(userid),userName,userPhone,passWord));
+                        Toast.makeText(SQLiteTestActivity.this, "插入数据成功", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    if (isEmpty(userid) && isNotEmpty(userName)) {
+                        Toast.makeText(SQLiteTestActivity.this, "id为空", Toast.LENGTH_SHORT).show();
+                    }
+                    if (isEmpty(userName) && isNotEmpty(userid)) {
+                        Toast.makeText(SQLiteTestActivity.this, "姓名为空", Toast.LENGTH_SHORT).show();
+                    }
+                    if (isEmpty(userid) && isEmpty(userName)) {
+                        Toast.makeText(SQLiteTestActivity.this, "请填写信息", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                etUserid.setText("");
+                etUsername.setText("");
+                etUserphone.setText("");
+                etUspassworld.setText("");
+            }
+        });
         initDbHelp();
 
     }
 
     private void initDbHelp() {
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "userinfotwo-db", null);
-        SQLiteDatabase db = helper.getWritableDatabase();
-        DaoMaster daoMaster = new DaoMaster(db);
-        DaoSession daoSession = daoMaster.newSession();
-        userDao = daoSession.getUserInfoTwoDao();
-
+//        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "userinfotwo-db", null);
+//        SQLiteDatabase db = helper.getWritableDatabase();
+//        DaoMaster daoMaster = new DaoMaster(db);
+//        DaoSession daoSession = daoMaster.newSession();
+//        userDao = daoSession.getUserInfoTwoDao();
+        userDao = GreenDaoManager.getInstance().getNewSession().getUserInfoTwoDao();
     }
 
 
