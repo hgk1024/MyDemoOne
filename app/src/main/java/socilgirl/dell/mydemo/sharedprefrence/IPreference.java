@@ -68,8 +68,10 @@ public interface IPreference {
      */
     void putAll(String key, List<String> list);
 
+
     /**
      * 保存一个List集合，并且自定保存顺序
+     * 你值得用用
      * @param key
      * @param list
      * @param comparator
