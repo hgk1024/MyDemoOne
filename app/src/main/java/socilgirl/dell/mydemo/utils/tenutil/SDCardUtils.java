@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import butterknife.internal.Utils;
 import socilgirl.dell.mydemo.MyApplication;
 
 /**

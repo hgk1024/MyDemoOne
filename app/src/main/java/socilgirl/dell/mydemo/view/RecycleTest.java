@@ -18,22 +18,19 @@ import com.zhy.adapter.recyclerview.wrapper.LoadMoreWrapper;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import socilgirl.dell.mydemo.R;
 import socilgirl.dell.mydemo.adapter.RecyclerviewChatAdapter;
 import socilgirl.dell.mydemo.model.ChatMessage;
 
-public class RecycleTest extends Activity implements SwipeRefreshLayout.OnRefreshListener {
+public class RecycleTest extends Activity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
 
-    @BindView(R.id.btn_recycle_one)
+//    @BindView(R.id.btn_recycle_one)
     Button btnRecycleOne;
-    @BindView(R.id.btn_recycle_two)
+//    @BindView(R.id.btn_recycle_two)
     Button btnRecycleTwo;
-    @BindView(R.id.btn_recycle_three)
+//    @BindView(R.id.btn_recycle_three)
     Button btnRecycleThree;
-    @BindView(R.id.btn_recycle_four)
+//    @BindView(R.id.btn_recycle_four)
     Button btnRecycleFour;
 //    @BindView(R.id.recycler_recyclerview)
     RecyclerView recyclerRecyclerview;
@@ -46,10 +43,23 @@ public class RecycleTest extends Activity implements SwipeRefreshLayout.OnRefres
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycle_test);
-        ButterKnife.bind(this);
+//        ButterKnife.bind(this);
+        initView();
+
+        initDataTypeOne();
+    }
+
+    private void initView() {
         recyclerRecyclerview = findViewById(R.id.recycler_recyclerview);
         swipeRefreshLayout = findViewById(R.id.refresh_layouview);
-        initDataTypeOne();
+        btnRecycleFour = findViewById(R.id.btn_recycle_four);
+        btnRecycleOne = findViewById(R.id.btn_recycle_one);
+        btnRecycleTwo = findViewById(R.id.btn_recycle_two);
+        btnRecycleThree = findViewById(R.id.btn_recycle_three);
+        btnRecycleThree.setOnClickListener(this);
+        btnRecycleTwo.setOnClickListener(this);
+        btnRecycleOne.setOnClickListener(this);
+        btnRecycleFour.setOnClickListener(this);
     }
 
     private void initDataTypeOne() {
@@ -99,19 +109,6 @@ public class RecycleTest extends Activity implements SwipeRefreshLayout.OnRefres
         swipeRefreshLayout.setOnRefreshListener(this);
     }
 
-    @OnClick({R.id.btn_recycle_one, R.id.btn_recycle_two, R.id.btn_recycle_three, R.id.btn_recycle_four})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.btn_recycle_one:
-                break;
-            case R.id.btn_recycle_two:
-                break;
-            case R.id.btn_recycle_three:
-                break;
-            case R.id.btn_recycle_four:
-                break;
-        }
-    }
 
     @Override
     public void onRefresh() {
@@ -123,5 +120,19 @@ public class RecycleTest extends Activity implements SwipeRefreshLayout.OnRefres
                 swipeRefreshLayout.setRefreshing(false);
             }
         },2000);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_recycle_one:
+                break;
+            case R.id.btn_recycle_two:
+                break;
+            case R.id.btn_recycle_three:
+                break;
+            case R.id.btn_recycle_four:
+                break;
+        }
     }
 }

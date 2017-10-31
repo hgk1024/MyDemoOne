@@ -15,18 +15,19 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.fingdo.statelayout.StateLayout;
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
 import socilgirl.dell.mydemo.R;
-import socilgirl.dell.mydemo.adapter.MyRecyclerViewAdapter;
+import socilgirl.dell.mydemo.adapter.MyRecycleAdapterTwo;
 import socilgirl.dell.mydemo.common.viewweight.CommonTopBar;
 import socilgirl.dell.mydemo.httpmanager.callback.BaseCallback;
 import socilgirl.dell.mydemo.httpmanager.imhttpinterface.GetParameters;
 import socilgirl.dell.mydemo.httpmanager.imhttpinterface.HttpManager;
 import socilgirl.dell.mydemo.model.UserInfo;
+
 
 public class MainActivity extends Activity {
 
@@ -39,7 +40,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+//        ButterKnife.bind(this);
         initData();
         topBar = findViewById(R.id.com_main_view);
         topBar.setTitle(false,"主页面",null);
@@ -70,9 +71,11 @@ public class MainActivity extends Activity {
         btnClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //测试stateLayout默认状态显示view
 //                stateLayout.showEmptyView();
 //                DownloadThread thread = new DownloadThread();
 //                thread.start();
+                //测试使用封装的联网框架
                 GetParameters parameters = new GetParameters.Builder()
                         .setUrl("user/get_user_info.json")
                         .setParameter("userid","1048")
@@ -103,8 +106,30 @@ public class MainActivity extends Activity {
         layoutManager.setOrientation(OrientationHelper.VERTICAL);
 //        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,3);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new MyRecyclerViewAdapter(this,mList));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
+//        recyclerView.setAdapter(new MyRecyclerViewAdapter(this,mList));//自己写的adapter
+//        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        MyRecycleAdapterTwo adapter = new MyRecycleAdapterTwo(this,R.layout.recycler_main_item,mList);
+        recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                Toast.makeText(MainActivity.this, "item：" + position + "--被点击了", Toast.LENGTH_SHORT).show();
+
+                switch (position){
+                    case 0:
+                        startActivity(new Intent(MainActivity.this, ButterKnifeTestActivity.class));
+                        break;
+                    case 1:
+
+                        break;
+                }
+            }
+
+            @Override
+            public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+                return false;
+            }
+        });
 //        recyclerView.addItemDecoration(new DividerItemDecoration(this,5));
     }
 

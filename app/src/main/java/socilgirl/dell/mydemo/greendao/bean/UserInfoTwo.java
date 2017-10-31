@@ -13,15 +13,17 @@ import org.greenrobot.greendao.annotation.NotNull;
 @Entity
 public class UserInfoTwo {
     @Id
-    private long userid;
+    private long id;
+    private String userid;
     private String userName;
     private String userPhone;
     @NotNull
     private String passWord;
 
-    @Generated(hash = 1910000769)
-    public UserInfoTwo(long userid, String userName, String userPhone,
+    @Generated(hash = 470122790)
+    public UserInfoTwo(long id, String userid, String userName, String userPhone,
             @NotNull String passWord) {
+        this.id = id;
         this.userid = userid;
         this.userName = userName;
         this.userPhone = userPhone;
@@ -32,11 +34,19 @@ public class UserInfoTwo {
     public UserInfoTwo() {
     }
 
-    public long getUserid() {
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getUserid() {
         return userid;
     }
 
-    public void setUserid(long userid) {
+    public void setUserid(String userid) {
         this.userid = userid;
     }
 

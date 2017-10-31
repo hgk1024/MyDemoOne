@@ -2,6 +2,8 @@ package socilgirl.dell.mydemo.greendao;
 
 import android.database.sqlite.SQLiteDatabase;
 
+import com.github.yuweiguocn.library.greendao.MigrationHelper;
+
 import socilgirl.dell.mydemo.MyApplication;
 import socilgirl.dell.mydemo.greendao.gen.DaoMaster;
 import socilgirl.dell.mydemo.greendao.gen.DaoSession;
@@ -25,10 +27,15 @@ public class GreenDaoManager
             // 注意：默认的 DaoMaster.DevOpenHelper 会在数据库升级时，删除所有的表，意味着这将导致数据的丢失。
             // 所以，在正式的项目中，你还应该做一层封装，来实现数据库的安全升级。
 
-            DaoMaster.DevOpenHelper devOpenHelper = new
-                    DaoMaster.DevOpenHelper(MyApplication.getAppContext(), "socriluser.db",null);
-//            MySQLiteOpenHelper devOpenHelper = new MySQLiteOpenHelper(MyApplication.getAppContext(),
-//                    "socriluser.db",null);//数据库更新时用到
+            //原先默认更新，会丢失原先数据库的数据
+//            DaoMaster.DevOpenHelper devOpenHelper = new
+//                    DaoMaster.DevOpenHelper(MyApplication.getAppContext(), "socriluser.db",null);
+
+            //使用更新数据库jar包：GreenDaoUpgradeHelper，实现了先复制原先的数据库数据，再清除原数据表，新建新的数据表，将存的数据添加到新的数据表中
+            //不会使数据丢失
+            MigrationHelper.DEBUG = false;
+            MySQLiteOpenHelper devOpenHelper = new MySQLiteOpenHelper(MyApplication.getAppContext(),
+                    "socriluser.db",null);//数据库更新时用到
             db = devOpenHelper.getWritableDatabase();
             // 注意：该数据库连接属于 DaoMaster，所以多个 Session 指的是相同的数据库连接。
             mDaoMaster = new DaoMaster(db);
@@ -50,9 +57,11 @@ public class GreenDaoManager
     public DaoMaster getMaster() {
         return mDaoMaster;
     }
+
     public DaoSession getSession() {
         return mDaoSession;
     }
+
     public DaoSession getNewSession() {
         mDaoSession = mDaoMaster.newSession();
         return mDaoSession;
