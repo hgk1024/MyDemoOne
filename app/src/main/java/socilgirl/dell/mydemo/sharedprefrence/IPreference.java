@@ -175,5 +175,4 @@ public interface IPreference {
         INTEGER, LONG, BOOLEAN, FLOAT, STRING, STRING_SET
     }
 
-
 }

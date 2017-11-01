@@ -23,7 +23,8 @@
         <activity android:name=".view.RecycleTest" />
         <activity android:name=".view.SQLiteTestActivity" />
         <activity android:name=".view.ButterKnifeTestActivity" />
-        <activity android:name=".view.SharedTestActivity"></activity>
+        <activity android:name=".view.SharedTestActivity" />
+        <activity android:name=".view.UpRefreshActivity"></activity>
     </application>
 
 </manifest>

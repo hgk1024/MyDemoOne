@@ -113,14 +113,19 @@ public class MainActivity extends Activity {
         adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                Toast.makeText(MainActivity.this, "item：" + position + "--被点击了", Toast.LENGTH_SHORT).show();
 
                 switch (position){
                     case 0:
+                        Toast.makeText(MainActivity.this, "ButterKnife测试", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(MainActivity.this, ButterKnifeTestActivity.class));
                         break;
                     case 1:
-
+                        Toast.makeText(MainActivity.this, "SharedPreferences测试", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this,SharedTestActivity.class));
+                        break;
+                    case 2:
+                        Toast.makeText(MainActivity.this, "SwipRefreshView测试", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this,UpRefreshActivity.class));
                         break;
                 }
             }

@@ -5,9 +5,11 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ToxicBakery.viewpager.transforms.ABaseTransformer;
@@ -38,6 +40,7 @@ import socilgirl.dell.mydemo.adapter.MyItemClickListener;
 import socilgirl.dell.mydemo.adapter.SecondViewAdapter;
 import socilgirl.dell.mydemo.imagemanger.ImageLoaderOptions;
 import socilgirl.dell.mydemo.imagemanger.ImageManager;
+import socilgirl.dell.mydemo.model.ImageBean;
 
 public class Main2Activity extends Activity implements OnItemClickListener {
     private ConvenientBanner convenientBanner;//顶部广告栏控件
@@ -46,7 +49,7 @@ public class Main2Activity extends Activity implements OnItemClickListener {
     private ArrayList<String> transformerList = new ArrayList<String>();
     private SecondViewAdapter adapter;
     private List<String> networkImages;
-//    private String[] images = {"http://img2.imgtn.bdimg.com/it/u=3093785514,1341050958&fm=21&gp=0.jpg",
+    //    private String[] images = {"http://img2.imgtn.bdimg.com/it/u=3093785514,1341050958&fm=21&gp=0.jpg",
 //            "http://img2.3lian.com/2014/f2/37/d/40.jpg",
 //            "http://d.3987.com/sqmy_131219/001.jpg",
 //            "http://img2.3lian.com/2014/f2/37/d/39.jpg",
@@ -54,7 +57,7 @@ public class Main2Activity extends Activity implements OnItemClickListener {
 //            "http://f.hiphotos.baidu.com/image/h%3D200/sign=1478eb74d5a20cf45990f9df460b4b0c/d058ccbf6c81800a5422e5fdb43533fa838b4779.jpg",
 //            "http://f.hiphotos.baidu.com/image/pic/item/09fa513d269759ee50f1971ab6fb43166c22dfba.jpg"
 //    };
-    private List<String> mList;
+    private List<ImageBean> mList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +84,10 @@ public class Main2Activity extends Activity implements OnItemClickListener {
 
                     //部分3D特效需要调整滑动速度
                     if(transforemerName.equals("StackTransformer")){
-                        convenientBanner.setScrollDuration(1200);
+                        convenientBanner.setScrollDuration(5000);
+                    }
+                    if (transforemerName.equals("FlipVerticalTransformer")){
+                        convenientBanner.setScrollDuration(5000);
                     }
 
                 } catch (ClassNotFoundException e) {
@@ -95,10 +101,8 @@ public class Main2Activity extends Activity implements OnItemClickListener {
         });
 
         convenientBanner.setPages(new CBViewHolderCreator<LocalImageHolderView>(){
-
             @Override
             public LocalImageHolderView createHolder() {
-
                 return new LocalImageHolderView();
             }
         },mList)
@@ -115,24 +119,24 @@ public class Main2Activity extends Activity implements OnItemClickListener {
     //添加轮播图数据
     private void setImagesDatas() {
         mList = new ArrayList<>();
-        mList.add("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1380084653,2448555822&fm=27&gp=0.jpg");
-        mList.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=227953490,3054069314&fm=27&gp=0.jpg");
-        mList.add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2302918630,1086443006&fm=27&gp=0.jpg");
-        mList.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2068546062,2852291024&fm=27&gp=0.jpg");
-        mList.add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4219594110,2716012792&fm=27&gp=0.jpg");
-        mList.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2586885873,577264777&fm=27&gp=0.jpg");
-        mList.add("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1380084653,2448555822&fm=27&gp=0.jpg");
-        mList.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=227953490,3054069314&fm=27&gp=0.jpg");
-        mList.add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2302918630,1086443006&fm=27&gp=0.jpg");
-        mList.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2068546062,2852291024&fm=27&gp=0.jpg");
-        mList.add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4219594110,2716012792&fm=27&gp=0.jpg");
-        mList.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2586885873,577264777&fm=27&gp=0.jpg");
-        mList.add("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1380084653,2448555822&fm=27&gp=0.jpg");
-        mList.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=227953490,3054069314&fm=27&gp=0.jpg");
-        mList.add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2302918630,1086443006&fm=27&gp=0.jpg");
-        mList.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2068546062,2852291024&fm=27&gp=0.jpg");
-        mList.add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4219594110,2716012792&fm=27&gp=0.jpg");
-        mList.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2586885873,577264777&fm=27&gp=0.jpg");
+        mList.add(new ImageBean("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1380084653,2448555822&fm=27&gp=0.jpg","查看详情"));
+        mList.add(new ImageBean("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=227953490,3054069314&fm=27&gp=0.jpg","去参加"));
+        mList.add(new ImageBean("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2302918630,1086443006&fm=27&gp=0.jpg","进入页面"));
+        mList.add(new ImageBean("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2068546062,2852291024&fm=27&gp=0.jpg","这是个美女"));
+        mList.add(new ImageBean("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4219594110,2716012792&fm=27&gp=0.jpg","美女主页"));
+        mList.add(new ImageBean("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2586885873,577264777&fm=27&gp=0.jpg","查看公司情况"));
+        mList.add(new ImageBean("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1380084653,2448555822&fm=27&gp=0.jpg","查看详情7"));
+        mList.add(new ImageBean("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=227953490,3054069314&fm=27&gp=0.jpg","去参加8"));
+        mList.add(new ImageBean("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2302918630,1086443006&fm=27&gp=0.jpg","去参加9"));
+        mList.add(new ImageBean("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2068546062,2852291024&fm=27&gp=0.jpg","去参加10"));
+        mList.add(new ImageBean("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4219594110,2716012792&fm=27&gp=0.jpg","去参加11"));
+        mList.add(new ImageBean("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2586885873,577264777&fm=27&gp=0.jpg","去参加12"));
+        mList.add(new ImageBean("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1380084653,2448555822&fm=27&gp=0.jpg","去参加13"));
+        mList.add(new ImageBean("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=227953490,3054069314&fm=27&gp=0.jpg","去参加14"));
+        mList.add(new ImageBean("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2302918630,1086443006&fm=27&gp=0.jpg","去参加15"));
+        mList.add(new ImageBean("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2068546062,2852291024&fm=27&gp=0.jpg","去参加16"));
+        mList.add(new ImageBean("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4219594110,2716012792&fm=27&gp=0.jpg","去参加17"));
+        mList.add(new ImageBean("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2586885873,577264777&fm=27&gp=0.jpg","去参加18"));
     }
 
     //添加recycleView数据
@@ -166,23 +170,27 @@ public class Main2Activity extends Activity implements OnItemClickListener {
     //轮播器子项点击事件
     @Override
     public void onItemClick(int position) {
-        Toast.makeText(this, "轮播器中的第" + position+1 + "找那个图片被点击了", Toast.LENGTH_SHORT).show();
+        position += 1;
+        Toast.makeText(this, "轮播器中的第" + position + "那个图片被点击了", Toast.LENGTH_SHORT).show();
     }
 
     //自定义
-    public class LocalImageHolderView implements Holder<String> {
+    public class LocalImageHolderView implements Holder<ImageBean> {
         private ImageView imageView;
+        private TextView textView;
         @Override
         public View createView(Context context) {
-            imageView = new ImageView(context);
-            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-            return imageView;
+            View v = LayoutInflater.from(context).inflate(R.layout.transform_item_layout,null);
+            imageView = v.findViewById(R.id.iv_transform_item);
+            textView = v.findViewById(R.id.tv_transform_item);
+            return v;
         }
 
         @Override
-        public void UpdateUI(Context context, int position, String url) {
+        public void UpdateUI(Context context, int position, ImageBean img) {
             ImageManager.getInstance()
-                    .showImage(new ImageLoaderOptions.Builder(imageView,url).build());
+                    .showImage(new ImageLoaderOptions.Builder(imageView,img.getUrl()).build());
+            textView.setText(img.getName());
         }
     }
 }
