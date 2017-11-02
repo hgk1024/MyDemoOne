@@ -131,8 +131,12 @@ public class EventTestActivity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.btn_unbind_service:
 //                if (connection.)
-                unbindService(connection);
-                tvService.setText("");
+//                if (myBind!=null && connection!=null) {
+                    unbindService(connection);
+                    tvService.setText("");
+//                }else{
+//                    Toast.makeText(this, "不在连接状态", Toast.LENGTH_SHORT).show();
+//                }
                 break;
             case R.id.btn_start_time:
 //                Intent intent1 = new Intent(this,MyService.class);
