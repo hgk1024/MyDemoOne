@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="socilgirl.dell.mydemo.view.EventTestActivity">
+
+    <TextView
+        android:id="@+id/tv_ac_event"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="接收Activity传过来的消息"/>
+    <TextView
+        android:id="@+id/tv_service_event"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="接收Service传过来的消息"/>
+    <TextView
+        android:id="@+id/tv_fragment_event"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="接收Fragment传过来的消息"/>
+    <Button
+        android:id="@+id/btn_jump_ac"
+        android:text="跳转到发送activ,addfrag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="20dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="20dp">
+        <Button
+            android:id="@+id/btn_relized_service"
+            android:text="使用service发送消息建立连接"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_unbind_service"
+            android:text="断开连接"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+        <Button
+            android:id="@+id/btn_start_service"
+            android:text="打开Service"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_stop_service"
+            android:text="停止Service"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+        <TextView
+            android:id="@+id/tv_show_time"
+            android:hint="显示时间"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_start_time"
+            android:text="开始倒计时"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

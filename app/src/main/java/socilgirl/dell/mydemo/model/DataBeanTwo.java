@@ -5,7 +5,7 @@ package socilgirl.dell.mydemo.model;
  * 使用GsonFormate插件
  */
 
-public class DataBean {
+public  class DataBeanTwo {
 
     /**
      * name : hou
@@ -19,11 +19,9 @@ public class DataBean {
     private String sex;
     private boolean is_true;
 
-    public DataBean(String name, int age, String sex, boolean is_true) {
+    public DataBeanTwo(String name, int age) {
         this.name = name;
         this.age = age;
-        this.sex = sex;
-        this.is_true = is_true;
     }
 
     public String getName() {
@@ -63,8 +61,6 @@ public class DataBean {
         return "DataBean{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
-                ", sex='" + sex + '\'' +
-                ", is_true=" + is_true +
                 '}';
     }
 }

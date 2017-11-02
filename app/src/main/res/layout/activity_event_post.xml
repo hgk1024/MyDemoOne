@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="socilgirl.dell.mydemo.view.EventPostActivity">
+
+    <Button
+        android:id="@+id/btn_post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送dataBean数据"/>
+
+    <!--静态将fragment添加到activity中，添加时fragment一定要加上id，否则会报
+    Binary XML file line #0: Must specify unique android:id, android:tag,
+    or have a parent with an id for socilgirl.dell.mydemo.fragment.PostMsgFragment错误-->
+    <fragment
+        android:id="@+id/fragment_for"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:name="socilgirl.dell.mydemo.fragment.PostMsgFragment"
+        tools:layout="@layout/fragment_post_msg"/>
+    <Button
+        android:id="@+id/show_two_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="显示fragment"/>
+    <LinearLayout
+        android:id="@+id/move_add_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+    </LinearLayout>
+</LinearLayout>

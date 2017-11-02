@@ -24,7 +24,18 @@
         <activity android:name=".view.SQLiteTestActivity" />
         <activity android:name=".view.ButterKnifeTestActivity" />
         <activity android:name=".view.SharedTestActivity" />
-        <activity android:name=".view.UpRefreshActivity"></activity>
+        <activity android:name=".view.UpRefreshActivity" />
+        <activity android:name=".view.EventTestActivity" />
+        <activity android:name=".view.EventPostActivity" />
+
+        <service
+            android:name=".service.MyService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".service.CountTimerService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

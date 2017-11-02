@@ -2,10 +2,9 @@ package socilgirl.dell.mydemo.view;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
@@ -126,6 +125,10 @@ public class MainActivity extends Activity {
                     case 2:
                         Toast.makeText(MainActivity.this, "SwipRefreshView测试", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(MainActivity.this,UpRefreshActivity.class));
+                        break;
+                    case 3:
+                        Toast.makeText(MainActivity.this, "EventBus测试", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this,EventTestActivity.class));
                         break;
                 }
             }

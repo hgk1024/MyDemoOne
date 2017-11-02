@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.zhouyou.http.EasyHttp;
 
+import org.greenrobot.eventbus.EventBus;
+
 import socilgirl.dell.mydemo.greendao.GreenDaoManager;
 import socilgirl.dell.mydemo.greendao.gen.DaoMaster;
 import socilgirl.dell.mydemo.greendao.gen.DaoSession;
@@ -28,6 +30,7 @@ public class MyApplication extends Application {
         EasyHttp.init(this);
         EasyHttp.getInstance().setBaseUrl("https://api.zaiwaner.cn/1.0.1/").debug("网络访问：",true);
         GreenDaoManager.getInstance();//Greendao初始化
+
     }
 
 
