@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="socilgirl.dell.mydemo.gaodeditu.ShowMapActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:id="@+id/btn_defalt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="标准地图"/>
+        <Button
+            android:id="@+id/btn_star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="卫星地图"/>
+        <Button
+            android:id="@+id/btn_night"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="夜间地图"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:id="@+id/btn_getMap_offline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="导航页面"/>
+        <Button
+            android:id="@+id/btn_stop_offline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="离停止下载"/>
+        <Button
+            android:id="@+id/btn_shot_screen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="截屏"/>
+    </LinearLayout>
+   <!-- <com.amap.api.navi.view.PoiInputSearchWidget
+        android:id="@+id/search_poiinput"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        >
+
+    </com.amap.api.navi.view.PoiInputSearchWidget>-->
+    <com.amap.api.maps.MapView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.amap.api.maps.MapView>
+</LinearLayout>

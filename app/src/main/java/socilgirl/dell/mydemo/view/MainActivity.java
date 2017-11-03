@@ -22,6 +22,7 @@ import java.util.List;
 import socilgirl.dell.mydemo.R;
 import socilgirl.dell.mydemo.adapter.MyRecycleAdapterTwo;
 import socilgirl.dell.mydemo.common.viewweight.CommonTopBar;
+import socilgirl.dell.mydemo.gaodeditu.ShowMapActivity;
 import socilgirl.dell.mydemo.httpmanager.callback.BaseCallback;
 import socilgirl.dell.mydemo.httpmanager.imhttpinterface.GetParameters;
 import socilgirl.dell.mydemo.httpmanager.imhttpinterface.HttpManager;
@@ -129,6 +130,10 @@ public class MainActivity extends Activity {
                     case 3:
                         Toast.makeText(MainActivity.this, "EventBus测试", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(MainActivity.this,EventTestActivity.class));
+                        break;
+                    case 4:
+                        Toast.makeText(MainActivity.this, "高德地图使用", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this,ShowMapActivity.class));
                         break;
                 }
             }

@@ -19,6 +19,10 @@ android {
                 includeCompileClasspath = true
             }
         }
+        ndk {//高德地图设置
+            //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "arm64-v8a", "x86_64"
+        }
     }
     buildTypes {
         release {
@@ -26,7 +30,46 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
+//    packagingOptions {
+//        exclude 'lib/x86/libRoadLineRebuildAPI.so'
+//        exclude 'lib/x86/libGNaviUtils.so'
+//        exclude 'lib/x86/libGNaviMapex.so'
+//        exclude 'lib/x86/libGNaviMap.so'
+//        exclude 'lib/x86/libGNaviSearch.so'
+//        exclude 'lib/x86/libGNaviData.so'
+//
+//        exclude 'lib/armeabi/libGNaviData.so'
+//        exclude 'lib/armeabi/libGNaviMapex.so'
+//        exclude 'lib/armeabi/libGNaviSearch.so'
+//        exclude 'lib/armeabi/libGNaviMap.so'
+//        exclude 'lib/armeabi/libGNaviUtils.so'
+//        exclude 'lib/armeabi/libRoadLineRebuildAPI.so'
+//
+//        exclude 'lib/arm64-v8a/libGNaviMap.so'
+//        exclude 'lib/arm64-v8a/libGNaviData.so'
+//        exclude 'lib/arm64-v8a/libGNaviMapex.so'
+//        exclude 'lib/arm64-v8a/libGNaviSearch.so'
+//        exclude 'lib/arm64-v8a/libRoadLineRebuildAPI.so'
+//        exclude 'lib/arm64-v8a/libGNaviUtils.so'
+//
+//        exclude 'lib/armeabi-v7a/libGNaviUtils.so'
+//        exclude 'lib/armeabi-v7a/libGNaviData.so'
+//        exclude 'lib/armeabi-v7a/libGNaviMap.so'
+//        exclude 'lib/armeabi-v7a/libGNaviMapex.so'
+//        exclude 'lib/armeabi-v7a/libRoadLineRebuildAPI.so'
+//        exclude 'lib/armeabi-v7a/libGNaviSearch.so'
+//
+//        exclude 'lib/x86_64/libGNaviUtils.so'
+//        exclude 'lib/x86_64/libGNaviMapex.so'
+//        exclude 'lib/x86_64/libGNaviData.so'
+//        exclude 'lib/x86_64/libRoadLineRebuildAPI.so'
+//        exclude 'lib/x86_64/libGNaviSearch.so'
+//        exclude 'lib/x86_64/libGNaviMap.so'
+//
+//        exclude 'assets/ap1.data'
+//        exclude 'assets/map_assets/style_1_10_1498047646.data'
+//        exclude 'assets/map_assets/VM3DRes/roadbk_main.png'
+//    }
 }
 
 /*针对greenDao的一些配置*/
@@ -65,5 +108,14 @@ dependencies {
     //数据库更新库
     compile 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v2.0.0'
     compile 'org.greenrobot:eventbus:3.0.0'
+    //高德
+    //3D地图,使用以下方法可以得到最新的jar包
+//    compile 'com.amap.api:3dmap:latest.integration'
+    //导航
+    compile 'com.amap.api:navi-3dmap:latest.integration'
+    //搜索
+    compile 'com.amap.api:search:latest.integration'
+    //定位
+    compile 'com.amap.api:location:latest.integration'
 }
 
