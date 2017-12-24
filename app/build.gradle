@@ -24,6 +24,11 @@ android {
             abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "arm64-v8a", "x86_64"
         }
     }
+    defaultConfig{
+        //解决com.android.builder.dexing.DexArchiveMergerException: Unable to merge dex
+        multiDexEnabled true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -31,44 +36,10 @@ android {
         }
     }
 //    packagingOptions {
+//        当有重复的包时通过以下方法可以解决
 //        exclude 'lib/x86/libRoadLineRebuildAPI.so'
 //        exclude 'lib/x86/libGNaviUtils.so'
-//        exclude 'lib/x86/libGNaviMapex.so'
-//        exclude 'lib/x86/libGNaviMap.so'
-//        exclude 'lib/x86/libGNaviSearch.so'
-//        exclude 'lib/x86/libGNaviData.so'
 //
-//        exclude 'lib/armeabi/libGNaviData.so'
-//        exclude 'lib/armeabi/libGNaviMapex.so'
-//        exclude 'lib/armeabi/libGNaviSearch.so'
-//        exclude 'lib/armeabi/libGNaviMap.so'
-//        exclude 'lib/armeabi/libGNaviUtils.so'
-//        exclude 'lib/armeabi/libRoadLineRebuildAPI.so'
-//
-//        exclude 'lib/arm64-v8a/libGNaviMap.so'
-//        exclude 'lib/arm64-v8a/libGNaviData.so'
-//        exclude 'lib/arm64-v8a/libGNaviMapex.so'
-//        exclude 'lib/arm64-v8a/libGNaviSearch.so'
-//        exclude 'lib/arm64-v8a/libRoadLineRebuildAPI.so'
-//        exclude 'lib/arm64-v8a/libGNaviUtils.so'
-//
-//        exclude 'lib/armeabi-v7a/libGNaviUtils.so'
-//        exclude 'lib/armeabi-v7a/libGNaviData.so'
-//        exclude 'lib/armeabi-v7a/libGNaviMap.so'
-//        exclude 'lib/armeabi-v7a/libGNaviMapex.so'
-//        exclude 'lib/armeabi-v7a/libRoadLineRebuildAPI.so'
-//        exclude 'lib/armeabi-v7a/libGNaviSearch.so'
-//
-//        exclude 'lib/x86_64/libGNaviUtils.so'
-//        exclude 'lib/x86_64/libGNaviMapex.so'
-//        exclude 'lib/x86_64/libGNaviData.so'
-//        exclude 'lib/x86_64/libRoadLineRebuildAPI.so'
-//        exclude 'lib/x86_64/libGNaviSearch.so'
-//        exclude 'lib/x86_64/libGNaviMap.so'
-//
-//        exclude 'assets/ap1.data'
-//        exclude 'assets/map_assets/style_1_10_1498047646.data'
-//        exclude 'assets/map_assets/VM3DRes/roadbk_main.png'
 //    }
 }
 
@@ -80,42 +51,62 @@ greendao {
 }
 dependencies {
     implementation 'com.android.support:support-v4:26.1.0'
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-    compile 'com.github.fingdo:stateLayout:1.0.4'
-    compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
-    compile 'com.google.dagger:dagger:2.4'
-    //    compile 'com.google.dagger:dagger-compiler:2.4'
-    compile 'org.glassfish:javax.annotation:10.0-b28'
+    implementation 'com.github.fingdo:stateLayout:1.0.4'
+    implementation 'com.android.support:recyclerview-v7:26.0.0-alpha1'
+    implementation 'com.google.dagger:dagger:2.4'
+    implementation 'org.glassfish:javax.annotation:10.0-b28'
+    //6.0权限申请
+    implementation 'com.yanzhenjie:permission:1.0.6'
+
+    implementation 'com.android.support:multidex:1.0.1'
+
     // 添加java 注解库
-    compile 'com.jakewharton:butterknife:8.8.1'
+    implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    compile 'com.zhouyou:rxeasyhttp:2.0.2'
-    compile 'com.github.bumptech.glide:glide:4.2.0'
+
+    implementation 'com.zhouyou:rxeasyhttp:2.0.2'
+
+    implementation 'com.github.bumptech.glide:glide:4.2.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.2.0'
-    compile 'com.nispok:snackbar:2.11.0'
-    compile 'com.android.support:design:26.0.0-alpha1'
-    compile 'com.bigkoo:convenientbanner:2.0.5'
+    implementation 'com.nispok:snackbar:2.11.0'
+    implementation 'com.android.support:design:26.0.0-alpha1'
+    implementation 'com.bigkoo:convenientbanner:2.0.5'
     implementation 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32'
-    compile 'com.zhy:base-rvadapter:3.0.3'
+    implementation 'com.zhy:base-rvadapter:3.0.3'
     implementation 'org.greenrobot:greendao:3.2.2'
     implementation 'org.greenrobot:greendao-generator:3.2.2'
     //数据库更新库
-    compile 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v2.0.0'
-    compile 'org.greenrobot:eventbus:3.0.0'
+    implementation 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v2.0.0'
+    implementation 'org.greenrobot:eventbus:3.0.0'
     //高德
     //3D地图,使用以下方法可以得到最新的jar包
-//    compile 'com.amap.api:3dmap:latest.integration'
+    //    compile 'com.amap.api:3dmap:latest.integration'
     //导航
-    compile 'com.amap.api:navi-3dmap:latest.integration'
+    implementation 'com.amap.api:navi-3dmap:latest.integration'
     //搜索
-    compile 'com.amap.api:search:latest.integration'
+    implementation 'com.amap.api:search:latest.integration'
     //定位
-    compile 'com.amap.api:location:latest.integration'
+    implementation 'com.amap.api:location:latest.integration'
+    //友盟统计
+    implementation 'com.umeng.analytics:analytics:latest.integration'
+    //友盟推送
+    implementation project(':PushSDK')
+    //友盟分享
+    implementation files('libs/open_sdk_r5788_lite.jar')
+    implementation files('libs/SocialSDK_QQ_Full.jar')
+    implementation files('libs/SocialSDK_Sina_Full.jar')
+    implementation files('libs/SocialSDK_WeiXin_Full.jar')
+    implementation files('libs/umeng_shareboard_widget.jar')
+    implementation files('libs/umeng_social_shareboard.jar')
+    implementation files('libs/wechat-sdk-android-with-mta-1.1.6.jar')
+    implementation files('libs/weiboSDKCore.jar')
+
 }
 

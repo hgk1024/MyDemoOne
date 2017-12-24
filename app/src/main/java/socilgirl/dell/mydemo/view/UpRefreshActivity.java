@@ -21,7 +21,6 @@ import socilgirl.dell.mydemo.weight.UpandDownRefreshLayout;
  * 测试自定义UpandDownRefreshLayout是否可用
  */
 public class UpRefreshActivity extends AppCompatActivity {
-
     private UpandDownRefreshLayout refreshLayout;
     private ListView listView;
     private List<String> mList;
@@ -112,5 +111,4 @@ public class UpRefreshActivity extends AppCompatActivity {
             }, 3000);
         }
     }
-
 }

@@ -1,12 +1,12 @@
 package socilgirl.dell.mydemo.httpmanager.imhttpinterface;
 
-import android.support.annotation.NonNull;
-import android.support.v4.util.ArrayMap;
 import android.text.TextUtils;
+import android.util.ArrayMap;
 
 
 import java.util.Map;
 
+import io.reactivex.annotations.NonNull;
 import socilgirl.dell.mydemo.httpmanager.HttpManagerConstant;
 import socilgirl.dell.mydemo.httpmanager.httpinterface.IParameters;
 
@@ -16,6 +16,21 @@ import socilgirl.dell.mydemo.httpmanager.httpinterface.IParameters;
 
 public class PostParameters implements IParameters {
     private Builder mBuilder;
+
+    @Override
+    public int getCache() {
+        return mBuilder.mCache;
+    }
+
+    @Override
+    public String getCacheKey() {
+        return mBuilder.mCacheKey;
+    }
+
+    @Override
+    public int getCacheTime() {
+        return mBuilder.mCacheTime;
+    }
 
     private PostParameters(Builder builder) {
         mBuilder = builder;
@@ -28,6 +43,9 @@ public class PostParameters implements IParameters {
 
     @Override
     public String getUrl() {
+        if (TextUtils.isEmpty(mBuilder.mUrl)) {
+            throw new NullPointerException(HttpManagerConstant.URL_NULL);
+        }
         return mBuilder.mUrl;
     }
 
@@ -66,6 +84,10 @@ public class PostParameters implements IParameters {
         return mBuilder.mSign;
     }
 
+    public static Builder newBuilder() {
+        return new Builder();
+    }
+
     public static class Builder {
         private String mUrl;
         private long mWriteTimeOut;
@@ -75,6 +97,9 @@ public class PostParameters implements IParameters {
         private Map<String, String> mParameters;
         private String mJson;
         private boolean mSign;
+        private int mCache;
+        private String mCacheKey;
+        private int mCacheTime;
 
         /**
          * 添加url
@@ -128,7 +153,7 @@ public class PostParameters implements IParameters {
          */
         public Builder setHeaders(@NonNull Map<String, String> mapHeaders) {
             if (mapHeaders == null || mapHeaders.size() < 1) {
-                throw new NullPointerException("请求头map 不能为空");
+                throw new NullPointerException(HttpManagerConstant.HEADERMAP_NULL);
             }
             this.mMapHeaders = mapHeaders;
             return this;
@@ -142,7 +167,7 @@ public class PostParameters implements IParameters {
          */
         public Builder setParameters(@NonNull Map<String, String> mapParameters) {
             if (mapParameters == null || mapParameters.size() < 1) {
-                throw new NullPointerException("请求头map 不能为空");
+                throw new NullPointerException(HttpManagerConstant.PARAMETERMAP_NULL);
             }
             this.mParameters = mapParameters;
             return this;
@@ -157,7 +182,7 @@ public class PostParameters implements IParameters {
          */
         public Builder setParameter(@NonNull String key, String value) {
             if (TextUtils.isEmpty(key)) {
-                throw new NullPointerException("参数key 不能为空");
+                throw new NullPointerException(HttpManagerConstant.PARAMETERKEY_NULL);
             }
 
             if (this.mParameters == null) {
@@ -178,6 +203,36 @@ public class PostParameters implements IParameters {
                 this.mParameters = null;
                 this.mJson = json;
             }
+            return this;
+        }
+
+        /**
+         * 设置是哪种缓存模式
+         *
+         * @return
+         */
+        public Builder setCache(int cache) {
+            this.mCache = cache;
+            return this;
+        }
+
+        /**
+         * 设置缓存key
+         *
+         * @return
+         */
+        public Builder setCacheKey(String cacheKey) {
+            this.mCacheKey = cacheKey;
+            return this;
+        }
+
+        /**
+         * 设置缓存时间 -1 为永久
+         *
+         * @return
+         */
+        public Builder setCacheTime(int cacheTime) {
+            this.mCacheTime = cacheTime;
             return this;
         }
 

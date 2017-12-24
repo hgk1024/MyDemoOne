@@ -10,16 +10,22 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 允许程序访问WiFi网络信息 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!--这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <!-- 允许程序读写手机状态和身份 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!--用于访问GPS定位-->
+    <!-- 用于访问GPS定位 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <!--这个权限用于允许程序在手机屏幕关闭后后台进程仍然运行-->
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <!-- 这个权限用于允许程序在手机屏幕关闭后后台进程仍然运行 -->
+    <!--<uses-permission android:name="android.permission.WAKE_LOCK" />-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 
     <application
         android:name=".MyApplication"
@@ -54,15 +60,81 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".gaodeditu.ShowMapActivity" />
+        <!-- <activity android:name=".gaodeditu.ShowMapActivity" /> -->
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="11f4998fa40a71802dfdc6ba3bf5e847" />
 
-        <activity android:name=".gaodeditu.MapOneActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <!-- <activity android:name=".gaodeditu.MapOneActivity" -->
+        <!-- android:theme="@android:style/Theme.NoTitleBar" -->
+        <!-- android:configChanges="orientation|keyboardHidden|screenSize" /> -->
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5a3e2280b27b0a1bb1000283" />
+        <meta-data
+            android:name="UMENG_MESSAGE_SECRET"
+            android:value="a0a7175dd02800f121b76f86be239da3">
+        </meta-data>
+
+        <activity android:name=".youmeng.ShareActivity" />
+        <activity android:name=".androidtest.TestActivity" />
+        <activity android:name=".androidtest.TestTwoActivity">
+
+            <!-- 设置隐式Intent，只又action和category值对应的参数都相同才可以实现跳转 -->
+            <intent-filter>
+                <action android:name="socilgirl.dell.mydemo.ACTION_START" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".view.GestureActivity"/>
+
+        //友盟分享 新浪
+        <activity
+            android:name="com.umeng.socialize.media.WBShareCallBackActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:exported="false"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name="com.sina.weibo.sdk.web.WeiboSdkWebActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize">
+
+        </activity>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:launchMode="singleTask"
+            android:name="com.sina.weibo.sdk.share.WbShareTransActivity">
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        //QQ完整版
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="tencent100424468" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
+
     </application>
 
 </manifest>

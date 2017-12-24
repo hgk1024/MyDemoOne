@@ -3,11 +3,13 @@
 buildscript {
     repositories {
         jcenter()
-        google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }//stateLayout
+        maven { url 'https://maven.google.com' }
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0'
+        classpath 'com.android.tools.build:gradle:3.0.1'
 
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'//greendao
         classpath 'com.jakewharton:butterknife-gradle-plugin:8.8.1'//butterknife
@@ -19,8 +21,8 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
-        maven { url 'https://jitpack.io' }//stateLayout
         mavenCentral()
+        maven { url 'https://jitpack.io' }//stateLayout
         maven { url 'https://maven.google.com' }
         google()
     }

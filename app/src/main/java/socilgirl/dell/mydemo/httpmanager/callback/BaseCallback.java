@@ -1,10 +1,7 @@
 package socilgirl.dell.mydemo.httpmanager.callback;
 
-
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-
-import socilgirl.dell.mydemo.httpmanager.httpinterface.IRequestCallback;
 
 /**
  * Created by ${小强} on 2017/10/26.
@@ -25,5 +22,10 @@ public abstract class BaseCallback<T> implements IRequestCallback<T> {
     @Override
     public Type getGenericityType() {
         return genericityType;
+    }
+
+    @Override
+    public void onProgress(int progress) {
+
     }
 }

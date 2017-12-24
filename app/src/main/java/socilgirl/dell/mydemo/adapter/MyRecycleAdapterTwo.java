@@ -22,7 +22,7 @@ public class MyRecycleAdapterTwo extends CommonAdapter<String>{
 
     @Override
     protected void convert(ViewHolder holder, String s, int position) {
-        int b = position+1;
+        int b = position;
         String a = "我是第"+b+"张图片";
         holder.setText(R.id.tv_item_mainrecycle,a);
         ImageManager.getInstance().showImage(new ImageLoaderOptions.Builder(holder.getView(R.id.iv_main_recycle_item),s)

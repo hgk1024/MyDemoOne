@@ -70,4 +70,26 @@ public interface IParameters {
      * @return
      */
     boolean getSign();
+
+    /**
+     * 是否需要缓存  0 不需要
+     *
+     * @return 缓存模式
+     */
+    int getCache();
+
+    /**
+     * 获取缓存key
+     *
+     * @return
+     */
+    String getCacheKey();
+
+    /**
+     * 获取缓存时间 -1 为永久缓存  返回值0 认为是-1
+     *
+     * @return
+     */
+    int getCacheTime();
+
 }

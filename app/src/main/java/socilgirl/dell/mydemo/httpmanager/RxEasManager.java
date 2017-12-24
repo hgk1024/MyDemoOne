@@ -1,4 +1,4 @@
-/*
+package socilgirl.dell.mydemo.httpmanager;/*
  * Copyright (C) 2017 zhouyou(478319399@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-package socilgirl.dell.mydemo.httpmanager;
 
 import com.zhouyou.http.request.GetRequest;
 import com.zhouyou.http.request.PostRequest;

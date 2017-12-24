@@ -1,4 +1,4 @@
-/*
+package socilgirl.dell.mydemo.httpmanager;/*
  * Copyright (C) 2017 zhouyou(478319399@qq.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package socilgirl.dell.mydemo.httpmanager;
+
 
 import com.zhouyou.http.model.ApiResult;
 
@@ -44,6 +44,8 @@ import com.zhouyou.http.model.ApiResult;
  * }
  */
 public class TestApiResult<T> extends ApiResult<T> {
+
+
 
     @Override
     public boolean isOk() {//因为库里使用code字段，code==0表示成功，但是你的数据结构是error_code==0,所以覆写isOk(),用error_code==0做为判断成功的条件
