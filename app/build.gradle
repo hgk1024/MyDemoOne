@@ -88,6 +88,10 @@ dependencies {
     //高德
     //3D地图,使用以下方法可以得到最新的jar包
     //    compile 'com.amap.api:3dmap:latest.integration'
+    //手势密码锁
+    implementation 'com.andrognito.patternlockview:patternlockview:1.0.0'
+    // Optional, for RxJava2 adapter
+    implementation 'com.andrognito.patternlockview:patternlockview-reactive:1.0.0'
     //导航
     implementation 'com.amap.api:navi-3dmap:latest.integration'
     //搜索

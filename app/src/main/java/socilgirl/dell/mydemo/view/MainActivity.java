@@ -213,9 +213,14 @@ public class MainActivity extends Activity {
                             startActivityForResult(intent, 100);
                             break;
                         case 4:
+                            //启动服务permission
                             Toast.makeText(MainActivity.this, "图片4被点击了", Toast.LENGTH_SHORT).show();
                             getPermission();
                             break;
+                        case 0:
+                            //手势密码
+                            startActivity(new Intent(MainActivity.this,GestureActivity.class));
+                                break;
                     }
                 }
 
