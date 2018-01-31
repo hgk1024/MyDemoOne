@@ -4,4 +4,21 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--阿里app密钥-->
+    <string name="app_secret_ali">MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCYuiphfZ4S1nZ+4SJ875Z9lz+JUQLJa3/FIFwQPznV+WhKNER7N+K5lf9wcj5dcqo5HfTe9yFCGL+ScWkckjj/UdR0/FYdRiqp81U0DpnOX/t58fmHT+Hu++wHQIbxzGx+YAdiHlbvejUGDzP03jaUzhXLP988URTBJjjsQzxv6DAn1ZBP5mTN03cwADkkfgjPcIM0oKfH0JrPGSQIeHjrJLn+VM+ONDZXBwLoR7YH0/x+wfghkL9wm/BDtUNt0jwgxL9YehSYmYf0NbZ4YfS7wzEEVtdRaaWy+o2zL6l+vA6p9hzf4zU9Fluji5qOY1809LfR747s1KqUjPHV5n4BAgMBAAECggEAYn6FAHR7shhfOPpGPJ5ixkH5drwo+O776oww80VjLix3ZouIspJbBGbI4qK6t5dQUh+QoQ5tg2vkeDPtnsBqQ7ZpNrzZaG2s7AeCplzYMjDSRFWaH/qTcYVENXUW0e+M9H9Ho65/UFfWxD6fukZomtTBV1+svwBnSx00TqIZ4uyxUifeahRiS37cfqPQ73ql95W9mPHUsfYLhCBj4SpN2jpWpeimxYKixGF/bRNlbC9cNB+ZXY0d9nHfTf6ZEIZcbCx1qVZKVj0sMBftoHXZoQvFkKA355Vsxg1FH4IJZZS5kbyy7xnF9U6WIe69O2hn/aGVTI+WPKxYUN2VXsHDtQKBgQDbx89Hl7JbTCpcHvx0M3wA2FFR9ZDS/3KN/6RJTmw/mjB/2ISlWLvUnMSYwxSFmUCpivFEjYa5zLbbxQc/WHRUm+lGNdEtFQHJDahomGGgsi8P0LeCRQxwbLzXMdEnU8viLBid+vzUmS6faQ3LN7h00BzJschFPP21wD+0nzayWwKBgQCx5Xvae2kA5nLN+ci/ByrDCoMbnl3RSHHV30WcDrSjpmrcV1PVl1+bWp4SFbmwObqyyJ4liL711xDIcZXGgECjHSGs0KwXokS7TRWjJ894x6noM+JYCR2TscPZw721DhmXPm2sRklWNabqmpxwdFTAhw5dc+kgOAvjhF4pN6MH0wKBgQC5Ekm+3MQJU1r8Ve96nnwWbhIUdTguJYO+hX4/aLWI3XtnvNj+L3mD8Tsv9F5Mnh+wZVsDwjWoMfXtnL2cnwzezqeiQuFRGDZ3qnOdGGxlmIY+yCAvp5tw9HAUulOIzWyLmVxldBwBnrh+7kT6UoKWg0UqpvWhMFno+enrXIL/rwKBgGWBrykcb+7ej7VuCJjPqxu9XNAejiPDtYi2rI5+aZ5Tb/goMCLZC+mmTDm/gcPHPPuUs4BxRZ0bSW1GOpMYTUmFbtif/QJDSfqh4m3FYoHlU9K2ADoBgYnrzffs08uCryF4srWxKVlypbqJ3CfiiRWOOqkiYWxL7qS0u9HC+FiXAoGAQ4vNZyVnzg5KjdCvQqD5hq4r/McKnU3upQqo0yv2RsXMytgn2Mcde8eqdjtTbrU50o88j4Fo18Deo8D/tpcGZ5INGazjn2nNuZDnVFSmbRhI3yQpoSSzeK6Kt6XLiWP0lUdJITXzPvL3VW5yh+qduASwUnCTP3eCP2HiFVF+pto=</string>
+    <string name="aes_key"></string>
+
+
+    <string-array name="labels">
+        <item>一档</item>
+        <item>二档</item>
+        <item>三档</item>
+        <item>四档</item>
+        <item>五档</item>
+    </string-array>
+    <string-array name="speed_labels">
+        <item>慢</item>
+        <item>快</item>
+    </string-array>
 </resources>

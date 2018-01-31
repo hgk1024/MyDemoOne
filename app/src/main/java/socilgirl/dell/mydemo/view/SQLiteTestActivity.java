@@ -1,5 +1,6 @@
 package socilgirl.dell.mydemo.view;
 
+import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +20,7 @@ import socilgirl.dell.mydemo.greendao.GreenDaoManager;
 import socilgirl.dell.mydemo.greendao.bean.UserInfoTwo;
 import socilgirl.dell.mydemo.greendao.gen.UserInfoTwoDao;
 
-public class SQLiteTestActivity extends AppCompatActivity implements View.OnClickListener {
+public class SQLiteTestActivity extends Activity implements View.OnClickListener {
 
     EditText etUserid;
     EditText etUsername;
@@ -38,7 +39,6 @@ public class SQLiteTestActivity extends AppCompatActivity implements View.OnClic
     private long id;
     private UserInfoTwoDao userDao;
     private UserInfoTwo userTwo;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,6 @@ public class SQLiteTestActivity extends AppCompatActivity implements View.OnClic
 //        userDao = daoSession.getUserInfoTwoDao();
         userDao = GreenDaoManager.getInstance().getNewSession().getUserInfoTwoDao();
     }
-
 
 //    @OnClick({R.id.btn_add, R.id.btn_delete, R.id.btn_ualter, R.id.btn_check, R.id.btn_adupdate})
 //    public void OnClick(View view) {
@@ -171,7 +170,6 @@ public class SQLiteTestActivity extends AppCompatActivity implements View.OnClic
                     if (isEmpty(userid) && isEmpty(userName)) {
                         Toast.makeText(SQLiteTestActivity.this, "请填写信息", Toast.LENGTH_SHORT).show();
                     }
-
                 }
                 etUserid.setText("");
                 etUsername.setText("");

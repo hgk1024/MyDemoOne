@@ -23,14 +23,19 @@ android {
             //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
             abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "arm64-v8a", "x86_64"
         }
-    }
-    defaultConfig{
         //解决com.android.builder.dexing.DexArchiveMergerException: Unable to merge dex
         multiDexEnabled true
+
+        //打渠道包时版本名后面添加一句话，意思就是flavor dimension 它的维度就是该版本号，这样维度就是都是统一的了
+        flavorDimensions "versionCode"
     }
 
     buildTypes {
         release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -41,8 +46,44 @@ android {
 //        exclude 'lib/x86/libGNaviUtils.so'
 //
 //    }
-}
+    sourceSets {
 
+    }
+    signingConfigs{
+        debug{
+            storeFile file('debugkeystore.jks')
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+        release{
+            storeFile file('debugkeystore.jks')
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+    }
+//打渠道包//渠道Flavors
+    productFlavors {
+        yingyongbao {}
+        xiaomi {}
+        baidu {}
+        wandoujia {}
+        lenovo {}
+        OPPO {}
+        zw360 {}
+        dongqiuhui {}
+        pp {}
+        jifeng {}
+        youyi {}
+        nduo {}
+        anzhi {}
+        meizu {}
+//        productFlavors.all { flavor ->
+//            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: OPPO]//这里需要在defaultConfig中配置一个默认的渠道名称
+//        }
+    }
+}
 /*针对greenDao的一些配置*/
 greendao {
     schemaVersion 6//数据库版本号
@@ -64,15 +105,11 @@ dependencies {
     implementation 'org.glassfish:javax.annotation:10.0-b28'
     //6.0权限申请
     implementation 'com.yanzhenjie:permission:1.0.6'
-
     implementation 'com.android.support:multidex:1.0.1'
-
     // 添加java 注解库
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-
     implementation 'com.zhouyou:rxeasyhttp:2.0.2'
-
     implementation 'com.github.bumptech.glide:glide:4.2.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.2.0'
     implementation 'com.nispok:snackbar:2.11.0'
@@ -111,6 +148,14 @@ dependencies {
     implementation files('libs/umeng_social_shareboard.jar')
     implementation files('libs/wechat-sdk-android-with-mta-1.1.6.jar')
     implementation files('libs/weiboSDKCore.jar')
+    implementation files('libs/ocr-sdk.jar')
+    implementation project(':ocr_ui')
+    implementation 'cn.yipianfengye.android:zxing-library:2.2'
+    //    implementation 'com.aliyun.ams:alicloud-android-hotfix:3.1.9'
+    implementation files('libs/alicloud-android-utils-1.1.1.jar')
+    implementation files('libs/sophix.jar')
 
+    //signSeekBar
+    implementation 'com.zhouyou:signseekbar:1.0.1'
 }
 

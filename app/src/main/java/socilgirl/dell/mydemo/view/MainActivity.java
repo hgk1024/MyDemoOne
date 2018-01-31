@@ -33,14 +33,17 @@ import java.util.List;
 import socilgirl.dell.mydemo.R;
 import socilgirl.dell.mydemo.adapter.MyRecycleAdapterTwo;
 import socilgirl.dell.mydemo.androidtest.TestActivity;
+import socilgirl.dell.mydemo.common.view.BaseAllActivity;
 import socilgirl.dell.mydemo.common.viewweight.CommonTopBar;
 import socilgirl.dell.mydemo.httpmanager.callback.BaseCallback;
 import socilgirl.dell.mydemo.httpmanager.imhttpinterface.GetParameters;
 import socilgirl.dell.mydemo.httpmanager.imhttpinterface.HttpManager;
+import socilgirl.dell.mydemo.model.NameBin;
 import socilgirl.dell.mydemo.model.UserInfo;
+import socilgirl.dell.mydemo.youmeng.ShareActivity;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseAllActivity {
 
     private static final int REQUEST_CODE_SETTING = 300;
     private static final int REQUEST_CODE_PERMISSION_SINGLE = 400;
@@ -48,7 +51,7 @@ public class MainActivity extends Activity {
     private Button btnClick;
     private StateLayout stateLayout;
     private RecyclerView recyclerView;
-    private List<String> mList;
+    private List<NameBin> mList;
     CommonTopBar topBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,47 +114,47 @@ public class MainActivity extends Activity {
         }
     };
 
-        //因此Rationale功能是在用户拒绝一次权限后，再次申请时检测到已经申请过一次该权限了，允许开发者弹窗说明申请权限的目的，
-        // 获取用户的同意后再申请权限，避免用户勾选不再提示，导致不能再次申请权限。
-        private RationaleListener listener2 = new RationaleListener() {
-            @Override
-            public void showRequestPermissionRationale(int requestCode, final Rationale rationale) {
-                AlertDialog.newBuilder(MainActivity.this)
-                        .setTitle("友好提醒")
-                        .setMessage("你已拒绝过定位权限，沒有定位定位权限无法为你推荐附近的妹子，你看着办！")
-                        .setPositiveButton("好，给你", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                rationale.resume();
-                            }
-                        })
-                        .setNegativeButton("我拒绝", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                rationale.cancel();
-                            }
-                        }).show();
-            }
-        };
+    //因此Rationale功能是在用户拒绝一次权限后，再次申请时检测到已经申请过一次该权限了，允许开发者弹窗说明申请权限的目的，
+    // 获取用户的同意后再申请权限，避免用户勾选不再提示，导致不能再次申请权限。
+    private RationaleListener listener2 = new RationaleListener() {
+        @Override
+        public void showRequestPermissionRationale(int requestCode, final Rationale rationale) {
+            AlertDialog.newBuilder(MainActivity.this)
+                    .setTitle("友好提醒")
+                    .setMessage("你已拒绝过定位权限，沒有定位定位权限无法为你推荐附近的妹子，你看着办！")
+                    .setPositiveButton("好，给你", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            rationale.resume();
+                        }
+                    })
+                    .setNegativeButton("我拒绝", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            rationale.cancel();
+                        }
+                    }).show();
+        }
+    };
 
-        private void setOnEvent() {
-            btnClick = (Button) findViewById(R.id.btn_one);
-            stateLayout = (StateLayout) findViewById(R.id.statelayout);
-            recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-            btnClick.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //测试stateLayout默认状态显示view
+    private void setOnEvent() {
+        btnClick = (Button) findViewById(R.id.btn_one);
+        stateLayout = (StateLayout) findViewById(R.id.statelayout);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        btnClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //测试stateLayout默认状态显示view
 //                stateLayout.showEmptyView();
 //                DownloadThread thread = new DownloadThread();
 //                thread.start();
-                    //测试使用封装的联网框架
-                    GetParameters parameters = new GetParameters.Builder()
-                            .setUrl("user/get_user_info.json")
-                            .setParameter("userid", "1048")
-                            .build();
+                //测试使用封装的联网框架
+                GetParameters parameters = new GetParameters.Builder()
+                        .setUrl("user/get_user_info.json")
+                        .setParameter("userid", "1048")
+                        .build();
 
-                    //网络访问EasyRetrofit封装应用
+                //网络访问EasyRetrofit封装应用
 //                HttpManager.getInstance().get(parameters, new BaseCallback<UserInfo>() {
 //                    @Override
 //                    public void onStart() {
@@ -171,203 +174,221 @@ public class MainActivity extends Activity {
 //                        Toast.makeText(MainActivity.this, "获取数据失败", Toast.LENGTH_SHORT).show();
 //                    }
 //                });
-                }
-            });
-            LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-            layoutManager.setOrientation(OrientationHelper.VERTICAL);
+            }
+        });
+        LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+        layoutManager.setOrientation(OrientationHelper.VERTICAL);
 //        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,3);
-            recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(layoutManager);
 //        recyclerView.setAdapter(new MyRecyclerViewAdapter(this,mList));//自己写的adapter
 //        recyclerView.setItemAnimator(new DefaultItemAnimator());
-            MyRecycleAdapterTwo adapter = new MyRecycleAdapterTwo(MainActivity.this, R.layout.recycler_main_item, mList);
-            recyclerView.setAdapter(adapter);
-            adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                    switch (position) {
-                        case 10:
-                            Toast.makeText(MainActivity.this, "ButterKnife测试", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(MainActivity.this, ButterKnifeTestActivity.class));
-                            break;
-                        case 11:
-                            Toast.makeText(MainActivity.this, "SharedPreferences测试", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(MainActivity.this, SharedTestActivity.class));
-                            break;
-                        case 12:
-                            Toast.makeText(MainActivity.this, "SwipRefreshView测试", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(MainActivity.this, UpRefreshActivity.class));
-                            break;
-                        case 13:
-                            Toast.makeText(MainActivity.this, "EventBus测试", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(MainActivity.this, EventTestActivity.class));
-                            break;
-                        case 14:
-                            Toast.makeText(MainActivity.this, "高德地图使用", Toast.LENGTH_SHORT).show();
-//                        startActivity(new Intent(MainActivity.this,ShowMapActivity.class));
-                            break;
-                        case 5:
-                            Log.d(TAG, "onItemClick: 5  Menu使用");
-//                        startActivity(new Intent(MainActivity.this, TestActivity.class));
-                            Intent intent = new Intent(MainActivity.this, TestActivity.class);
-                            intent.putExtra("data", "phone:18115486953");
-                            startActivityForResult(intent, 100);
-                            break;
-                        case 4:
-                            //启动服务permission
-                            Toast.makeText(MainActivity.this, "图片4被点击了", Toast.LENGTH_SHORT).show();
-                            getPermission();
-                            break;
-                        case 0:
-                            //手势密码
-                            startActivity(new Intent(MainActivity.this,GestureActivity.class));
-                                break;
-                    }
-                }
-
-                @Override
-                public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
-                    return false;
-                }
-            });
-//        recyclerView.addItemDecoration(new DividerItemDecoration(this,5));
-        }
-
-        private void setTitleData() {
-            topBar = findViewById(R.id.com_main_view);
-            topBar.setTitle(false, "主页面", null);
-            topBar.setRlLeft(true, null, R.mipmap.fanhui);
-            topBar.setRlRight(false, "跳转", 0);
-            topBar.setOnLeftClickListener(new CommonTopBar.OnLeftClickListener() {
-                @Override
-                public void onClickLeft() {
-                    Toast.makeText(MainActivity.this, "左侧按钮被点击了", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this, RecycleTest.class));
-                }
-
-                @Override
-                public void onClickRight() {
-                    startActivity(new Intent(MainActivity.this, Main2Activity.class));
-                }
-
-                @Override
-                public void onClickTitle() {
-                    topBar.setTitle(false, "点击显示", null);
-                    Toast.makeText(MainActivity.this, "标题栏被点击了", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this, SQLiteTestActivity.class));
-                }
-            });
-        }
-
-        @Override
-        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-            switch (requestCode) {
-                case 100:
-                    if (resultCode == RESULT_OK) {
-                        String resultData = data.getStringExtra("data_return");
-                        Toast.makeText(MainActivity.this, "返回数据是：" + resultData, Toast.LENGTH_SHORT).show();
-                    }
-                    break;
-                case REQUEST_CODE_SETTING:
-                    Toast.makeText(this, "The user came back from the settings", Toast.LENGTH_LONG).show();
-                    break;
-            }
-        }
-
-        private void initData() {
-            mList = new ArrayList<>();
-            mList.add("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1380084653,2448555822&fm=27&gp=0.jpg");
-            mList.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=227953490,3054069314&fm=27&gp=0.jpg");
-            mList.add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2302918630,1086443006&fm=27&gp=0.jpg");
-            mList.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2068546062,2852291024&fm=27&gp=0.jpg");
-            mList.add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4219594110,2716012792&fm=27&gp=0.jpg");
-            mList.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2586885873,577264777&fm=27&gp=0.jpg");
-            mList.add("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1380084653,2448555822&fm=27&gp=0.jpg");
-            mList.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=227953490,3054069314&fm=27&gp=0.jpg");
-            mList.add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2302918630,1086443006&fm=27&gp=0.jpg");
-            mList.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2068546062,2852291024&fm=27&gp=0.jpg");
-            mList.add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4219594110,2716012792&fm=27&gp=0.jpg");
-            mList.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2586885873,577264777&fm=27&gp=0.jpg");
-            mList.add("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1380084653,2448555822&fm=27&gp=0.jpg");
-            mList.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=227953490,3054069314&fm=27&gp=0.jpg");
-            mList.add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2302918630,1086443006&fm=27&gp=0.jpg");
-            mList.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2068546062,2852291024&fm=27&gp=0.jpg");
-            mList.add("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4219594110,2716012792&fm=27&gp=0.jpg");
-            mList.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2586885873,577264777&fm=27&gp=0.jpg");
-
-        }
-
-        Handler handler = new Handler() {
+        MyRecycleAdapterTwo adapter = new MyRecycleAdapterTwo(MainActivity.this, R.layout.recycler_main_item, mList);
+        recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
             @Override
-            public void handleMessage(Message msg) {
-                switch (msg.what) {
-                    case 100:
-                        stateLayout.showEmptyView(R.string.secerror, R.mipmap.ugc_delete_last_part_hover);
+            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                switch (position) {
+                    case 0:
+                        //手势密码
+                        Intent intent12 = new Intent(MainActivity.this,GestureActivity.class);
+                        intent12.putExtra("type",1);
+                        startActivity(intent12);
+                        finish();
+                        break;
+                    case 1:
+                        //网络判断
+                        startActivity(new Intent(MainActivity.this,LittlerKnowledgeActivity.class));
+                        break;
+                    case 2:
+                        //文字识别
+                        startActivity(new Intent(MainActivity.this,CardBindActivity.class));
+                        break;
+                    case 3:
+                        //友盟
+                        startActivity(new Intent(MainActivity.this,ShareActivity.class));
+                        break;
+                    case 4:
+                        //启动服务permission
+                        Toast.makeText(MainActivity.this, "图片4被点击了", Toast.LENGTH_SHORT).show();
+                        getPermission();
+                        break;
+                    case 5:
+                        //手机系统功能调用
+                        Log.d(TAG, "onItemClick: 5  Menu使用");
+//                        startActivity(new Intent(MainActivity.this, TestActivity.class));
+                        Intent intent = new Intent(MainActivity.this, TestActivity.class);
+                        intent.putExtra("data", "phone:18115486953");
+                        startActivityForResult(intent, 100);
+                        break;
+                    case 10:
+                        //butterknife使用
+                        Toast.makeText(MainActivity.this, "ButterKnife测试", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this, ButterKnifeTestActivity.class));
+                        break;
+                    case 11:
+
+                        Toast.makeText(MainActivity.this, "SharedPreferences测试", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this, SharedTestActivity.class));
+                        break;
+                    case 12:
+                        Toast.makeText(MainActivity.this, "SwipRefreshView测试", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this, UpRefreshActivity.class));
+                        break;
+                    case 13:
+                        Toast.makeText(MainActivity.this, "EventBus测试", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this, EventTestActivity.class));
+                        break;
+                    case 14:
+                        Toast.makeText(MainActivity.this, "高德地图使用", Toast.LENGTH_SHORT).show();
+//                        startActivity(new Intent(MainActivity.this,ShowMapActivity.class));
                         break;
                 }
             }
-        };
 
-        class DownloadThread extends Thread {
             @Override
-            public void run() {
-                try {
-                    System.out.println("DownloadThread id " + Thread.currentThread().getId());
-                    System.out.println("开始下载文件");
-                    //此处让线程DownloadThread休眠5秒中，模拟文件的耗时过程
-                    Thread.sleep(2000);
-                    System.out.println("文件下载完成");
-                    //文件下载完成后更新UI
-                    Message msg = new Message();
-                    //虽然Message的构造函数式public的，我们也可以通过以下两种方式通过循环对象获取Message
-                    //msg = Message.obtain(uiHandler);
-                    //msg = uiHandler.obtainMessage();
+            public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+                return false;
+            }
+        });
+//        recyclerView.addItemDecoration(new DividerItemDecoration(this,5));
+    }
 
-                    //what是我们自定义的一个Message的识别码，以便于在Handler的handleMessage方法中根据what识别
-                    //出不同的Message，以便我们做出不同的处理操作
-                    msg.what = 100;
+    private void setTitleData() {
+        topBar = findViewById(R.id.com_main_view);
+        topBar.setTitle(false, "主页面", null);
+        topBar.setRlLeft(true, null, R.mipmap.fanhui);
+        topBar.setRlRight(false, "跳转", 0);
+        topBar.setOnLeftClickListener(new CommonTopBar.OnLeftClickListener() {
+            @Override
+            public void onClickLeft() {
+                Toast.makeText(MainActivity.this, "左侧按钮被点击了", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, RecycleTest.class));
+            }
 
-                    //我们可以通过arg1和arg2给Message传入简单的数据
-                    msg.arg1 = 123;
-                    msg.arg2 = 321;
-                    //我们也可以通过给obj赋值Object类型传递向Message传入任意数据
-                    //msg.obj = null;
-                    //我们还可以通过setData方法和getData方法向Message中写入和读取Bundle类型的数据
-                    //msg.setData(null);
-                    //Bundle data = msg.getData();
+            @Override
+            public void onClickRight() {
+                startActivity(new Intent(MainActivity.this, Main2Activity.class));
+            }
 
-                    //将该Message发送给对应的Handler
-                    handler.sendMessage(msg);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            @Override
+            public void onClickTitle() {
+                topBar.setTitle(false, "点击显示", null);
+                Toast.makeText(MainActivity.this, "标题栏被点击了", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, SQLiteTestActivity.class));
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case 100:
+                if (resultCode == RESULT_OK) {
+                    String resultData = data.getStringExtra("data_return");
+                    Toast.makeText(MainActivity.this, "返回数据是：" + resultData, Toast.LENGTH_SHORT).show();
                 }
+                break;
+            case REQUEST_CODE_SETTING:
+                Toast.makeText(this, "The user came back from the settings", Toast.LENGTH_LONG).show();
+                break;
+        }
+    }
+
+    private void initData() {
+        mList = new ArrayList<>();
+        mList.add(new NameBin("手势密码设置","https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1380084653,2448555822&fm=27&gp=0.jpg"));
+        mList.add(new NameBin("网络判断","https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=227953490,3054069314&fm=27&gp=0.jpg"));
+        mList.add(new NameBin("文字识别","https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2302918630,1086443006&fm=27&gp=0.jpg"));
+        mList.add(new NameBin("友盟","https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2068546062,2852291024&fm=27&gp=0.jpg"));
+        mList.add(new NameBin("启动服务permission","https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4219594110,2716012792&fm=27&gp=0.jpg"));
+        mList.add(new NameBin("手机系统功能调用","https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2586885873,577264777&fm=27&gp=0.jpg"));
+        mList.add(new NameBin("手势密码设置","https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1380084653,2448555822&fm=27&gp=0.jpg"));
+        mList.add(new NameBin("手势密码设置","https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=227953490,3054069314&fm=27&gp=0.jpg"));
+        mList.add(new NameBin("手势密码设置","https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2302918630,1086443006&fm=27&gp=0.jpg"));
+        mList.add(new NameBin("手势密码设置","https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2068546062,2852291024&fm=27&gp=0.jpg"));
+        mList.add(new NameBin("ButterKnife测试","https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4219594110,2716012792&fm=27&gp=0.jpg"));
+        mList.add(new NameBin("SharedPreferences测试","https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2586885873,577264777&fm=27&gp=0.jpg"));
+        mList.add(new NameBin("SwipRefreshView测试","https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1380084653,2448555822&fm=27&gp=0.jpg"));
+        mList.add(new NameBin("EventBus测试","https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=227953490,3054069314&fm=27&gp=0.jpg"));
+        mList.add(new NameBin("高德地图","https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2302918630,1086443006&fm=27&gp=0.jpg"));
+        mList.add(new NameBin("手势密码设置","https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2068546062,2852291024&fm=27&gp=0.jpg"));
+        mList.add(new NameBin("手势密码设置","https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4219594110,2716012792&fm=27&gp=0.jpg"));
+        mList.add(new NameBin("手势密码设置","https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2586885873,577264777&fm=27&gp=0.jpg"));
+
+    }
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 100:
+                    stateLayout.showEmptyView(R.string.secerror, R.mipmap.ugc_delete_last_part_hover);
+                    break;
             }
         }
+    };
 
+    class DownloadThread extends Thread {
         @Override
-        protected void onRestart() {
-            super.onRestart();
-        }
+        public void run() {
+            try {
+                System.out.println("DownloadThread id " + Thread.currentThread().getId());
+                System.out.println("开始下载文件");
+                //此处让线程DownloadThread休眠5秒中，模拟文件的耗时过程
+                Thread.sleep(2000);
+                System.out.println("文件下载完成");
+                //文件下载完成后更新UI
+                Message msg = new Message();
+                //虽然Message的构造函数式public的，我们也可以通过以下两种方式通过循环对象获取Message
+                //msg = Message.obtain(uiHandler);
+                //msg = uiHandler.obtainMessage();
 
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-            getMenuInflater().inflate(R.menu.main, menu);
-            return true;
-        }
+                //what是我们自定义的一个Message的识别码，以便于在Handler的handleMessage方法中根据what识别
+                //出不同的Message，以便我们做出不同的处理操作
+                msg.what = 100;
 
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.menu_left:
-                    Toast.makeText(this, "leftbutton被点击了", Toast.LENGTH_SHORT).show();
+                //我们可以通过arg1和arg2给Message传入简单的数据
+                msg.arg1 = 123;
+                msg.arg2 = 321;
+                //我们也可以通过给obj赋值Object类型传递向Message传入任意数据
+                //msg.obj = null;
+                //我们还可以通过setData方法和getData方法向Message中写入和读取Bundle类型的数据
+                //msg.setData(null);
+                //Bundle data = msg.getData();
 
-                    break;
-                case R.id.menu_right:
-                    Toast.makeText(this, "rightButton被点击了", Toast.LENGTH_SHORT).show();
-                    break;
+                //将该Message发送给对应的Handler
+                handler.sendMessage(msg);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-            return true;
         }
-        //    private class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHodler>{
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_left:
+                Toast.makeText(this, "leftbutton被点击了", Toast.LENGTH_SHORT).show();
+
+                break;
+            case R.id.menu_right:
+                Toast.makeText(this, "rightButton被点击了", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
+    }
+    //    private class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHodler>{
 //
 //        private Context mContext;
 //        private LayoutInflater inflater;
@@ -404,4 +425,4 @@ public class MainActivity extends Activity {
 //        }
 //    }
 
-    }
+}

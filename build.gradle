@@ -6,6 +6,7 @@ buildscript {
         mavenCentral()
         maven { url 'https://jitpack.io' }//stateLayout
         maven { url 'https://maven.google.com' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/releases'}//阿里云的热修复
         google()
     }
     dependencies {
@@ -24,6 +25,7 @@ allprojects {
         mavenCentral()
         maven { url 'https://jitpack.io' }//stateLayout
         maven { url 'https://maven.google.com' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/releases'}//阿里云的热修复
         google()
     }
 }

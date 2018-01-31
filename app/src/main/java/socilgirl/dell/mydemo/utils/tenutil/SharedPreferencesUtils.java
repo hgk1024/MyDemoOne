@@ -24,11 +24,9 @@ public class SharedPreferencesUtils {
      * @param key
      * @param object
      */
-    public static void put(Context context, String key, Object object)
+    public static void setData(Context context, String key, Object object)
     {
-
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
-                Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
 
         if (object instanceof String)
@@ -62,7 +60,7 @@ public class SharedPreferencesUtils {
      * @param defaultObject
      * @return
      */
-    public static Object get(Context context, String key, Object defaultObject)
+    public static Object getData(Context context, String key, Object defaultObject)
     {
         SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
                 Context.MODE_PRIVATE);
